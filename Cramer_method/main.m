@@ -1,79 +1,80 @@
-%Решение системы линейных уравнений
+% Solution of the system of linear equations
+
 syms x;
-N=5;
-h= zeros(N,N);
+N = 5;
+h = zeros(N, N);
 
 for i = 1 : 1 : N
     for j = 1 : 1 : N 
-      h(i,j)= 1/(i+j-1);
+      h(i, j) =  1 / (i + j - 1);
     end;
 end;
-disp('h=');
+disp('h = ');
 disp(h);
 
 r = rand(N);
-disp('r=');
+disp('r = ');
 disp(r);
 
-A = r*h;
-disp('A=');
+A = r * h;
+disp('A = ');
 disp(A);
 
-b = rand(N,1);
-disp('b=');
+b = rand(N, 1);
+disp('b = ');
 disp(b);
 
 
-%Метод Крамера
-disp('Метод Крамера:');
+% Cramer method
+disp('Cramer method:');
 disp('x=');
 xi=CramerMethod(A, b, N);
 disp(vpa(xi));
 
-%Вносим небольшие изменения и находим х по методу Крамера.
-disp('Метод Крамера с изменениями:');
+% small changes and find x by the Cramer method
+disp('Cramer method with small changes');
 h = 0.1;
 b1 = zeros(N, 1);
 for i = 1 : 1 : N
-    b1(i)= b(i)+ h;
+    b1(i) = b(i) + h;
 end;
 
-disp('Новый вектор b:');
+disp('new vector b:');
 disp(b1);
 
-disp('x=');
+disp('x = ');
 xk=CramerMethod(A, b1, N);
 disp(vpa(xk));
 
-disp('Погрешность');
+disp('Error');
 for i = 1 : 1 : N
-    disp(vpa(xi(i)- xk(i)));
+    disp(vpa(xi(i) - xk(i)));
 end;
 
 solution1 = sumabs(xi);
-difference = sumabs(xi-xk);
-error = vpa(difference/solution1);
+difference = sumabs(xi - xk);
+error = vpa(difference / solution1);
 disp(error);
 
-%Оценка погрешности
+% Error estimation
 
-%Нормы матриц
-disp('||А||=');
-normA = norm(A,1);
+% Norms of matrices
+disp('||A|| = ');
+normA = norm(A, 1);
 disp(normA);
 
 B = inv(A);
 
-disp('||B||=');
-normB=norm(B);
+disp('||B|| = ');
+normB = norm(B);
 disp(normB);
 
-disp('Число обусловленности=');
+disp('Condition number = ');
 cond1 = vpa(normA * normB);
 disp(cond1);
 
-normb=sumabs(b);
-normb1=sumabs(b1);
+normb = sumabs(b);
+normb1 = sumabs(b1);
 
-disp('Относительная погрешность:');
-disp(cond1*(normb1/normb)- error );
+disp('Approximation error:');
+disp(cond1 * (normb1 / normb) - error );
