@@ -1,15 +1,15 @@
-function [ nextX ] = DiagonalPreponderance( A, b, N, E, eps )
-disp('Метод простой итерации');
-disp('1. Матрица с диагональным преобладанием:');
+function [nextX] = DiagonalPreponderance(A, b, N, E, eps)
+disp('Simple iteration method');
+disp('1. Matrix with diagonal predominance:');
 
 D = zeros(N);
 
-for i = 1:1:N
+for i = 1 : 1 : N
     D(i, i) = A(i, i);
 end;
 
-g = D\b;
-H = E - D\A;
+g = D \ b;
+H = E - D \ A;
 
 prevX = [1; 0; 0];
 nextX = H * prevX + g;
@@ -25,9 +25,9 @@ while norm(nextX - prevX) > eps
     count = count + 1;
 end;
 
-disp('Погрешность:');
+disp('Error:');
 disp(b - A * nextX);
-disp('Количество шагов:');
+disp('КNumber of steps:');
 disp(count);
 
 end

@@ -1,25 +1,25 @@
-function [ nextX ] = HermitianMatrix( A, b, E, eps )
-disp('Метод простой итерации');
-disp('2. Эрмитова положительно определенная матрица:');
+function [nextX] = HermitianMatrix(A, b, E, eps)
+disp('Simple iteration method');
+disp('2. Hermitian positive definite matrix:');
 
-% Максимальное по модулю собственное число А степенным методом
-maxEigenvalue=PowerMethod(A, eps);
-disp('      Максимальное по модулю собственное число А=');
+% Maximum modulus of an eigenvalue A by a power method
+maxEigenvalue = PowerMethod(A, eps);
+disp('      Maximum modulus of an eigenvalue A = ');
 disp(maxEigenvalue);
 
-% Максимальное по модулю собственное число А методом скалярного произведения
+% Maximum modulus of an eigenvalue A by scalar product method
 maxEigenvalue = ScalarProduct(A, eps);
-disp('      Максимальное по модулю собственное число А=');
+disp('      Maximum modulus of an eigenvalue A = ');
 disp(maxEigenvalue);
 
-% Минимальное по модулю собственное число А методом скалярного произведения
+% Minimum modulus of an eigenvalue A by scalar product method
 B = A - maxEigenvalue * E;
-minEigenvalue=maxEigenvalue +ScalarProduct(B, eps);
-disp('      Минимальное по модулю собственное число А=');
+minEigenvalue = maxEigenvalue + ScalarProduct(B, eps);
+disp('      Minimum modulus of an eigenvalue A = ');
 disp(minEigenvalue);
 
-alfa = 2/(minEigenvalue+maxEigenvalue);
-H = E - alfa*A;
+alfa = 2 / (minEigenvalue + maxEigenvalue);
+H = E - alfa * A;
 g = alfa * b;
 
 prevX = [1; 0; 0];
@@ -33,9 +33,9 @@ while norm(nextX - prevX) > eps
     count = count + 1;
 end; 
 
-disp('Погрешность:');
+disp('Error:');
 disp(b - A * nextX);
-disp('Количество шагов:');
+disp('КNumber of steps:');
 disp(count);
 
 end

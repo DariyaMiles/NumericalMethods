@@ -1,33 +1,33 @@
-function [ nextX] = SeidelMethod( A, b, N, E, eps )
-disp('Метод Зейделя');
+function [nextX] = SeidelMethod(A, b, N, E, eps)
+disp('Seidel method');
 
 D = zeros(N);
 
-for i = 1:1:N
+for i = 1 : 1 : N
     D(i, i) = A(i, i);
 end;
 
-g = D\b;
-H = E - D\A;
+g = D \ b;
+H = E - D \ A;
 
 prevX = [1; 0; 0];
 nextX = zeros(N, 1); 
 
-nextX=SearchX(H, g, N, nextX, prevX);
+nextX = SearchX(H, g, N, nextX, prevX);
 
 count = 0;
 
 while norm(nextX - prevX) > eps
-    prevX=nextX;
+    prevX = nextX;
     
-    nextX=SearchX(H, g, N, nextX, prevX);
+    nextX = SearchX(H, g, N, nextX, prevX);
     
     count = count + 1;
 end;
 
-disp('Погрешность:');
+disp('Error:');
 disp(b - A * nextX);
-disp('Количество шагов:');
+disp('КNumber of steps:');
 disp(count);
 
 end

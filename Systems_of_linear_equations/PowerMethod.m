@@ -1,18 +1,18 @@
-function [ nextLambda ] = PowerMethod( A, eps)
-disp('    Степенной метод:');
+function [nextLambda] = PowerMethod(A, eps)
+disp('    Power method:');
 
-prevY =[1; 0; 0];
+prevY =[ 1; 0; 0];
 nextY = A * prevY;
 
 index = 1;
 
-while nextY(index)/prevY(index) == 0 
+while nextY(index) / prevY(index) == 0
     index = index + 1;
 end;
 
-prevLambda = nextY(index)/prevY(index);
+prevLambda = nextY(index) / prevY(index);
 
-[nextY, prevY]=SearchComponentsY(nextY, A);
+[nextY, prevY] = SearchComponentsY(nextY, A);
 
 index = 1;
 
@@ -24,9 +24,9 @@ nextLambda = nextY(index) / prevY(index);
 
 count = 1;
 
-while abs(nextLambda-prevLambda) > eps
+while abs(nextLambda - prevLambda) > eps
     count = count + 1;
-    [nextY, prevY]=SearchComponentsY(nextY, A);
+    [nextY, prevY] = SearchComponentsY(nextY, A);
     
     prevLambda = nextLambda;
     
@@ -40,7 +40,7 @@ while abs(nextLambda-prevLambda) > eps
 end;
 
 
-disp('      Количество шагов:');
+disp('      КNumber of steps:');
 disp(count);
 
 end
