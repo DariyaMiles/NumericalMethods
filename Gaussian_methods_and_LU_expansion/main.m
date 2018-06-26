@@ -1,25 +1,25 @@
-%Point method of solving a system of linear equations
+% Point method of solving a system of linear equations
 
-A = [0.80464*10^-4 -0.50072 4.69392; 0.74464 -0.50072 1.92392; 1.02464*10^-4 1.09972 1.37392];
+A = [0.80464 * 10^-4 -0.50072 4.69392; 0.74464 -0.50072 1.92392; 1.02464*10^-4 1.09972 1.37392];
 b = [4.95706; 2.42911; 2.92296];
-n=3;
+n = 3;
 
-%Gaussian method
+% Gaussian method
 disp('Gaussian method');
-GaussianMethod(A,b,n);
+GaussianMethod(A, b, n);
 
-%Modification of Gaussian method #1
+% Modification of Gaussian method #1
 disp('Modification of Gaussian method #1');
-ModificationOfGaussianMethod(A,b,n);
+ModificationOfGaussianMethod(A, b, n);
 
-%Modification of Gaussian method #2
+% Modification of Gaussian method #2
 disp('Modification of Gaussian method #2');
-ModificationOfGaussianMethod2(A,b,n);
+ModificationOfGaussianMethod2(A, b, n);
 
-%Modification of Gaussian method #3
+% Modification of Gaussian method #3
 disp('Modification of Gaussian method #3');
-ModificationOfGaussianMethod3(A,b,n);
+ModificationOfGaussianMethod3(A, b, n);
 
-%LU expansion
+% LU expansion
 disp('LU expansion');
-LUexpansion(A,b,n);
+LUexpansion(A, b, n);
